@@ -11,13 +11,13 @@ export default function Entry() {
       <Text style={styles.subtitle}>Choose a flow to explore mock screens</Text>
 
       <View style={styles.cardRow}>
-        <Link href="/passenger/home" asChild>
+        <Link href={"/passenger/home" as unknown as any} asChild>
           <Pressable style={styles.card} onPress={() => setRole('passenger')}>
             <Text style={styles.cardTitle}>Passenger</Text>
             <Text style={styles.cardText}>Map-first search, boarding, and payment</Text>
           </Pressable>
         </Link>
-        <Link href="/driver/availability" asChild>
+        <Link href={"/driver/availability" as unknown as any} asChild>
           <Pressable style={styles.card} onPress={() => setRole('driver')}>
             <Text style={styles.cardTitle}>Driver</Text>
             <Text style={styles.cardText}>Availability, tokens list, reconciliation</Text>
@@ -26,7 +26,7 @@ export default function Entry() {
       </View>
 
       <View style={styles.cardRow}>
-        <Link href="/admin/dashboard" asChild>
+        <Link href={"/admin/dashboard" as unknown as any} asChild>
           <Pressable style={styles.card} onPress={() => setRole('admin')}>
             <Text style={styles.cardTitle}>Owner Admin</Text>
             <Text style={styles.cardText}>Fleet, routes, and payouts overview</Text>

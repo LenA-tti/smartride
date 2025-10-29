@@ -10,15 +10,15 @@ export default function LoginScreen() {
       <Text style={styles.title}>Welcome to SmartRide</Text>
       <Text style={styles.subtitle}>Select your role to continue:</Text>
 
-      <Pressable style={[styles.button, styles.passenger]} onPress={() => router.push('/passenger/home')}>
+      <Pressable style={[styles.button, styles.passenger]} onPress={() => router.push('/passenger/home' as any)}>
         <Text style={styles.buttonText}>Passenger</Text>
       </Pressable>
 
-      <Pressable style={[styles.button, styles.driver]} onPress={() => router.push('/driver/availability')}>
+      <Pressable style={[styles.button, styles.driver]} onPress={() => router.push('/driver/availability' as any)}>
         <Text style={styles.buttonText}>Driver</Text>
       </Pressable>
 
-      <Pressable style={[styles.button, styles.admin]} onPress={() => router.push('/admin/dashboard')}>
+      <Pressable style={[styles.button, styles.admin]} onPress={() => router.push('/admin/dashboard' as any)}>
         <Text style={styles.buttonText}>Admin</Text>
       </Pressable>
     </View>
