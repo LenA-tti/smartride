@@ -1,27 +1,27 @@
-import { Badge } from '@/components/ui/badge';
-import Button from '@/components/ui/button-extended';
-import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import {
-    ArrowLeft,
-    Check,
-    CreditCard,
-    MoreVertical,
-    Plus,
-    Smartphone,
-    Trash2
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { Badge } from '../ui/badge';
+import { 
+  ArrowLeft, 
+  CreditCard,
+  Smartphone,
+  Plus,
+  Check,
+  MoreVertical,
+  Trash2
 } from 'lucide-react';
-import React, { useState } from 'react';
-import { toast } from 'sonner';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { toast } from 'sonner@2.0.3';
 
 interface PaymentScreenProps {
   onBack: () => void;
@@ -90,10 +90,9 @@ export function PaymentScreen({ onBack }: PaymentScreenProps) {
       <div className="px-6 py-4 border-b">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
+            <Button 
+              variant="ghost" 
               size="icon"
-              className="bg-transparent hover:bg-muted"
               onClick={onBack}
             >
               <ArrowLeft className="w-5 h-5" />
@@ -114,7 +113,7 @@ export function PaymentScreen({ onBack }: PaymentScreenProps) {
         <p className="text-primary-foreground/80 mb-2">SmartRide Wallet</p>
         <h1 className="text-primary-foreground mb-4">P 125.00</h1>
         <div className="flex gap-2">
-          <Button variant="default" size="sm" className="bg-gray-600 text-white hover:bg-gray-700">
+          <Button variant="secondary" size="sm">
             Add Money
           </Button>
           <Button variant="outline" size="sm" className="bg-transparent text-primary-foreground border-primary-foreground/30">
@@ -162,7 +161,7 @@ export function PaymentScreen({ onBack }: PaymentScreenProps) {
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="icon" className="flex-shrink-0 bg-transparent hover:bg-muted">
+                      <Button variant="ghost" size="icon" className="flex-shrink-0">
                         <MoreVertical className="w-4 h-4" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -221,7 +220,7 @@ export function PaymentScreen({ onBack }: PaymentScreenProps) {
             <DialogTitle>Add Payment Method</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <RadioGroup value={selectedType} onValueChange={(value: 'mobile-money' | 'card') => setSelectedType(value)}>
+            <RadioGroup value={selectedType} onValueChange={(value) => setSelectedType(value as any)}>
               <div className="space-y-3">
                 <label className="flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-accent">
                   <RadioGroupItem value="mobile-money" id="mobile-money" />

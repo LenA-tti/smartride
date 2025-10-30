@@ -1,12 +1,47 @@
-import React, { useState } from 'react';
-import { AnimatedSidebar } from './AnimatedSidebar';
+/*
+ * REACT NATIVE CONVERSION GUIDE - PassengerApp.tsx
+ * =================================================
+ * 
+ * 1. NAVIGATION:
+ *    Replace state-based screen switching with React Navigation:
+ *    - Install: npm install @react-navigation/native @react-navigation/drawer
+ *    - Use Drawer Navigator for sidebar + screens
+ *    
+ *    Example:
+ *    import { createDrawerNavigator } from '@react-navigation/drawer';
+ *    const Drawer = createDrawerNavigator();
+ *    
+ *    <Drawer.Navigator 
+ *      drawerContent={(props) => <AnimatedSidebar {...props} />}
+ *      screenOptions={{ headerShown: false }}
+ *    >
+ *      <Drawer.Screen name="Home" component={HomeScreen} />
+ *      <Drawer.Screen name="History" component={TripHistoryScreen} />
+ *      // ... other screens
+ *    </Drawer.Navigator>
+ * 
+ * 2. STATE MANAGEMENT:
+ *    - Keep useState for selectedVehicle and currentTrip
+ *    - Or use React Context / Redux for global state
+ *    - Sidebar state managed by Drawer Navigator
+ * 
+ * 3. SCREEN PROPS:
+ *    Pass data via navigation params:
+ *    navigation.navigate('TripTracking', { vehicle: selectedVehicle });
+ *    
+ *    Access in screen:
+ *    const { vehicle } = route.params;
+ */
+
+import { useState } from 'react';
 import { HomeScreen } from './HomeScreen';
-import { PaymentScreen } from './PaymentScreen';
-import { ProfileScreen } from './ProfileScreen';
-import { SavedLocationsScreen } from './SavedLocationsScreen';
-import { TripHistoryScreen } from './TripHistoryScreen';
-import { TripTrackingScreen } from './TripTrackingScreen';
 import { VehicleSelectionScreen } from './VehicleSelectionScreen';
+import { TripTrackingScreen } from './TripTrackingScreen';
+import { TripHistoryScreen } from './TripHistoryScreen';
+import { SavedLocationsScreen } from './SavedLocationsScreen';
+import { ProfileScreen } from './ProfileScreen';
+import { PaymentScreen } from './PaymentScreen';
+import { AnimatedSidebar } from './AnimatedSidebar';
 
 export type PassengerScreen = 'home' | 'vehicle-selection' | 'tracking' | 'history' | 'locations' | 'profile' | 'payment';
 
@@ -132,7 +167,3 @@ export function PassengerApp({ onLogout }: PassengerAppProps) {
     </>
   );
 }
-
-/* PassengerApp.tsx */
-
-export default PassengerApp;

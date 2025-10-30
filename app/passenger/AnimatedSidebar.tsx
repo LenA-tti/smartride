@@ -1,20 +1,79 @@
-import {
-  ChevronRight,
-  CreditCard,
-  History,
-  Home,
-  LogOut,
-  MapPin,
+/*
+ * REACT NATIVE CONVERSION GUIDE - AnimatedSidebar.tsx
+ * ====================================================
+ * 
+ * 1. DRAWER NAVIGATION:
+ *    Use this as custom drawer content for React Navigation Drawer:
+ *    
+ *    import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+ *    
+ *    function AnimatedSidebar(props) {
+ *      return (
+ *        <DrawerContentScrollView {...props}>
+ *          <View style={styles.container}>
+ *            // Custom drawer UI
+ *          </View>
+ *        </DrawerContentScrollView>
+ *      );
+ *    }
+ *    
+ *    Or implement completely custom drawer with Reanimated gestures
+ * 
+ * 2. BACKDROP & OVERLAY:
+ *    - AnimatePresence → Conditional rendering
+ *    - Backdrop with TouchableWithoutFeedback:
+ *      <TouchableWithoutFeedback onPress={onClose}>
+ *        <Animated.View style={[styles.backdrop, backdropStyle]} />
+ *      </TouchableWithoutFeedback>
+ * 
+ * 3. SLIDE ANIMATION:
+ *    Use Reanimated for drawer slide:
+ *    const translateX = useSharedValue(-320);
+ *    const animatedStyle = useAnimatedStyle(() => ({
+ *      transform: [{ translateX: withSpring(isOpen ? 0 : -320) }]
+ *    }));
+ *    
+ *    Or use Drawer Navigator's built-in animations
+ * 
+ * 4. GLASSMORPHISM:
+ *    - backdrop-blur → Use BlurView from @react-native-community/blur
+ *    - bg-white/10 → backgroundColor: 'rgba(255, 255, 255, 0.1)'
+ *    
+ *    <BlurView blurType={theme === 'dark' ? 'dark' : 'light'} blurAmount={10}>
+ *      <View style={styles.sidebarContent} />
+ *    </BlurView>
+ * 
+ * 5. MENU ITEMS:
+ *    Map through menuItems and create TouchableOpacity for each:
+ *    <TouchableOpacity 
+ *      onPress={() => navigation.navigate(item.id)}
+ *      style={[styles.menuItem, isActive && styles.menuItemActive]}
+ *    >
+ *      <Icon name={item.icon} size={20} />
+ *      <Text>{item.label}</Text>
+ *    </TouchableOpacity>
+ * 
+ * 6. THEME TOGGLE:
+ *    Keep the same logic, update visuals with Animated.View for switch
+ */
+
+import { motion, AnimatePresence } from 'motion/react';
+import { 
+  Home, 
+  History, 
+  CreditCard, 
+  User, 
+  MapPin, 
+  LogOut, 
+  X,
   Moon,
   Sun,
-  User,
-  X
+  Sparkles,
+  ChevronRight
 } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion';
-import React from 'react';
-import { Button } from '../../components/ui/button';
-import { useTheme } from '../../context/ThemeProvider';
 import type { PassengerScreen } from './PassengerApp';
+import { useTheme } from '../ThemeProvider';
+import { Button } from '../ui/button';
 
 interface AnimatedSidebarProps {
   isOpen: boolean;
@@ -46,11 +105,44 @@ export function AnimatedSidebar({
     onClose();
   };
 
+  /*
+   * RN CONVERSION - Sidebar Rendering:
+   * 
+   * If using custom implementation (not Drawer Navigator):
+   * 
+   * return (
+   *   <>
+   *     {isOpen && (
+   *       <>
+   *         <TouchableWithoutFeedback onPress={onClose}>
+   *           <Animated.View style={[styles.backdrop, backdropStyle]} />
+   *         </TouchableWithoutFeedback>
+   *         
+   *         <Animated.View style={[styles.sidebar, sidebarStyle]}>
+   *           <View style={styles.backgroundContainer}>
+   *             <Animated.View style={[styles.orb1, orb1Style]} />
+   *           </View>
+   *           <SafeAreaView style={styles.content}>
+   *             // Sidebar content
+   *           </SafeAreaView>
+   *         </Animated.View>
+   *       </>
+   *     )}
+   *   </>
+   * );
+   * 
+   * Styles:
+   * backdrop: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+   *            backgroundColor: 'rgba(0, 0, 0, 0.6)' },
+   * sidebar: { position: 'absolute', left: 0, top: 0, bottom: 0, width: 320,
+   *           backgroundColor: '#211832' }
+   */
   return (
     <AnimatePresence>
       {isOpen && (
         <>
           {/* Backdrop */}
+          {/* RN: TouchableWithoutFeedback + Animated.View */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -61,6 +153,12 @@ export function AnimatedSidebar({
           />
 
           {/* Sidebar */}
+          {/* 
+            RN SIDEBAR:
+            <Animated.View style={[styles.sidebar, { 
+              transform: [{ translateX: withSpring(isOpen ? 0 : -320) }]
+            }]}>
+          */}
           <motion.div
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
@@ -73,6 +171,7 @@ export function AnimatedSidebar({
             className="fixed left-0 top-0 bottom-0 w-80 bg-background dark:bg-[#211832] z-50 shadow-2xl overflow-hidden"
           >
             {/* Animated Background Effects */}
+            {/* RN: Use Animated.View for orbs */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <motion.div
                 className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-[#9B3922]/30 dark:to-[#C62300]/30 rounded-full blur-3xl"

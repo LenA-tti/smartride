@@ -1,26 +1,26 @@
-import Button from '@/components/ui/button-extended';
-import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { 
+  ArrowLeft, 
+  Home,
+  Briefcase,
+  MapPin,
+  Plus,
+  MoreVertical,
+  Edit,
+  Trash2
+} from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  ArrowLeft,
-  Briefcase,
-  Edit,
-  Home,
-  MapPin,
-  MoreVertical,
-  Plus,
-  Trash2
-} from 'lucide-react';
-import React, { useState } from 'react';
-import { toast } from 'sonner';
+} from '../ui/dropdown-menu';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { toast } from 'sonner@2.0.3';
 
 interface SavedLocationsScreenProps {
   onBack: () => void;
@@ -126,10 +126,9 @@ export function SavedLocationsScreen({ onBack }: SavedLocationsScreenProps) {
       <div className="px-6 py-4 border-b">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Button
-              variant="outline"
+            <Button 
+              variant="ghost" 
               size="icon"
-              className="bg-transparent hover:bg-muted"
               onClick={onBack}
             >
               <ArrowLeft className="w-5 h-5" />
@@ -183,7 +182,7 @@ export function SavedLocationsScreen({ onBack }: SavedLocationsScreenProps) {
                   </div>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline" size="icon" className="flex-shrink-0 bg-transparent hover:bg-muted">
+                      <Button variant="ghost" size="icon" className="flex-shrink-0">
                         <MoreVertical className="w-4 h-4" />
                       </Button>
                     </DropdownMenuTrigger>

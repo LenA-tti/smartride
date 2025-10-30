@@ -1,16 +1,17 @@
-import { Badge } from '@/components/ui/badge';
-import Button from '@/components/ui/button-extended';
-import { Card } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  ArrowLeft,
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Badge } from '../ui/badge';
+import { 
+  ArrowLeft, 
+  MapPin, 
   Calendar,
   Clock,
+  Star,
   Download,
-  MapPin,
-  Star
+  Filter
 } from 'lucide-react';
-import React, { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import type { Trip } from './PassengerApp';
 
 interface TripHistoryScreenProps {
@@ -92,10 +93,9 @@ export function TripHistoryScreen({ onBack }: TripHistoryScreenProps) {
       {/* Header */}
       <div className="px-6 py-4 border-b">
         <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
+          <Button 
+            variant="ghost" 
             size="icon"
-            className="bg-transparent hover:bg-muted"
             onClick={onBack}
           >
             <ArrowLeft className="w-5 h-5" />
@@ -172,10 +172,9 @@ export function TripHistoryScreen({ onBack }: TripHistoryScreenProps) {
           <div className="w-full bg-background rounded-t-3xl border-t shadow-2xl max-h-[80vh] overflow-auto">
             <div className="px-6 py-4 border-b flex items-center justify-between">
               <h3>Trip Details</h3>
-              <Button
-                variant="outline"
+              <Button 
+                variant="ghost" 
                 size="sm"
-                className="bg-transparent hover:bg-muted"
                 onClick={() => setSelectedTrip(null)}
               >
                 Close

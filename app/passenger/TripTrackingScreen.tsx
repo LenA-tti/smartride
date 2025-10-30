@@ -1,20 +1,19 @@
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import Button from '@/components/ui/button-extended';
-import { Card } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import React, { useEffect, useState } from 'react';
-
-import {
+import { useState, useEffect } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Badge } from '../ui/badge';
+import { Avatar, AvatarFallback } from '../ui/avatar';
+import { 
+  Phone, 
+  MapPin, 
+  Navigation,
+  Star,
   CheckCircle2,
   Clock,
-  MapPin,
-  Navigation,
-  Phone,
-  Star,
   Users
 } from 'lucide-react';
 import type { Vehicle } from './PassengerApp';
+import { Progress } from '../ui/progress';
 
 interface TripTrackingScreenProps {
   vehicle: Vehicle;

@@ -1,3 +1,23 @@
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { Avatar, AvatarFallback } from '../ui/avatar';
+import { Switch } from '../ui/switch';
+import { 
+  ArrowLeft, 
+  User,
+  Mail,
+  Phone,
+  Bell,
+  Shield,
+  HelpCircle,
+  FileText,
+  LogOut,
+  ChevronRight,
+  Edit
+} from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -7,28 +27,9 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import Button from '@/components/ui/button-extended';
-import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import {
-  ArrowLeft,
-  ChevronRight,
-  Edit,
-  FileText,
-  HelpCircle,
-  LogOut,
-  Mail,
-  Phone,
-  Shield,
-  User
-} from 'lucide-react';
-import React, { useState } from 'react';
-import { toast } from 'sonner';
+} from '../ui/alert-dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { toast } from 'sonner@2.0.3';
 
 interface ProfileScreenProps {
   onBack: () => void;
@@ -61,10 +62,9 @@ export function ProfileScreen({ onBack, onLogout }: ProfileScreenProps) {
       {/* Header */}
       <div className="px-6 py-4 border-b">
         <div className="flex items-center gap-3">
-          <Button
-            variant="outline"
+          <Button 
+            variant="ghost" 
             size="icon"
-            className="bg-transparent hover:bg-muted"
             onClick={onBack}
           >
             <ArrowLeft className="w-5 h-5" />

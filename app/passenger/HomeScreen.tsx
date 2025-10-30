@@ -1,19 +1,55 @@
-import { Card } from '@/components/ui/card';
-import {
-  Clock,
-  CreditCard,
-  History,
-  MapPin,
-  Menu,
-  Navigation,
+/*
+ * REACT NATIVE CONVERSION GUIDE - HomeScreen.tsx
+ * ===============================================
+ * 
+ * 1. NAVIGATION:
+ *    - Replace onNavigate with navigation.navigate()
+ *    - onOpenSidebar → navigation.openDrawer()
+ *    - Use navigation hooks from @react-navigation/native
+ * 
+ * 2. CARD COMPONENTS:
+ *    - Replace Card with custom View + shadow styles
+ *    - Use TouchableOpacity for clickable cards
+ * 
+ * 3. HEADER GRADIENT:
+ *    - Use LinearGradient from 'react-native-linear-gradient'
+ *    - For animated shimmer, use Animated.View with translateX
+ * 
+ * 4. QUICK ACTION CARDS:
+ *    - Map through actions array
+ *    - Each card is a TouchableOpacity with icon + text
+ *    - Use Pressable for press effects
+ * 
+ * 5. RECENT TRIPS:
+ *    - Use FlatList or ScrollView for list
+ *    - Each item is a TouchableOpacity card
+ * 
+ * 6. SEARCH BAR:
+ *    - TextInput with icon
+ *    - onFocus for navigation to vehicle selection
+ *    Example:
+ *      <TouchableOpacity onPress={onFindRide} style={styles.searchBar}>
+ *        <Icon name="search" size={20} />
+ *        <Text style={styles.searchPlaceholder}>Where to?</Text>
+ *      </TouchableOpacity>
+ */
+
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { 
+  MapPin, 
+  History, 
+  Star, 
+  CreditCard, 
+  User, 
   Search,
-  Star,
+  Navigation,
+  Clock,
   TrendingUp,
-  User
+  Menu
 } from 'lucide-react';
-import { motion } from 'motion';
-import React from 'react';
 import type { PassengerScreen } from './PassengerApp';
+import { motion } from 'motion/react';
 
 interface HomeScreenProps {
   onNavigate: (screen: PassengerScreen) => void;

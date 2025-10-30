@@ -1,17 +1,18 @@
-import { Badge } from '@/components/ui/badge';
-import Button from '@/components/ui/button-extended';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import {
-  ArrowLeft,
-  Clock,
-  Filter,
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Input } from '../ui/input';
+import { Badge } from '../ui/badge';
+import { 
+  ArrowLeft, 
+  MapPin, 
   Navigation,
-  Search,
   Star,
-  Users
+  Users,
+  Clock,
+  Search,
+  Filter
 } from 'lucide-react';
-import React, { useState } from 'react';
 import type { Vehicle } from './PassengerApp';
 
 interface VehicleSelectionScreenProps {
@@ -86,11 +87,11 @@ export function VehicleSelectionScreen({ onBack, onSelectVehicle }: VehicleSelec
       {/* Header */}
       <div className="bg-primary text-primary-foreground px-6 py-4">
         <div className="flex items-center gap-3 mb-4">
-          <Button
-            variant="outline"
+          <Button 
+            variant="ghost" 
             size="icon"
             onClick={onBack}
-            className="text-primary-foreground bg-transparent hover:bg-primary-foreground/20"
+            className="text-primary-foreground hover:bg-primary-foreground/20"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
